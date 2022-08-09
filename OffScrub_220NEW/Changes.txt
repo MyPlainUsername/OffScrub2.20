@@ -1,0 +1,335 @@
+2.20
+====
+Fixed: C2R script timing for script initialization logic
+Added: C2R vNext license cache removal
+Fixed: C2R Detectonly logic to avoid unintentional removal actions
+Fixed: OffScrub_O16msi Added additional C2R integration component (OODD) to exclude scope 
+
+2.19
+====
+Added: Logic to clean out vNext Licenses
+Added: Logic to clean out Typelib registrations
+
+2.18
+====
+Added: MSI Scrubber added command line option to filter on 32/64 bit only "/x86only", "/x64only"
+
+2.17
+====
+Added:  C2R defaults to regular uninstall before falling back to scrub based removal
+
+2.16
+====
+Fixed:  OffScrub_O16msi - Suite detection improvements
+Fixed:  OffScrub_O16msi - added awareness of C2R extensibility components to avoid unintentional removal of C2R components
+
+2.15
+====
+Changed: Added /KeepLicense switch for C2R to bypass license removal logic
+
+2.14
+====
+Fixed:   Added logic to keep standalone VBA component (which ships with 3rd party tools) by default
+         To override use /RemoveVBA switch
+Fixed:   Extended /RemoveLync switch to work for all (2010 and later) MSI scrubbers
+Changed: Improved restart logic for Windows Explorer in C2R Scrubber to avoid reboot needs
+Changed: Improved shortcut UnPin logic to avoid reboot needs
+
+2.13
+====
+Changed: Removed attempts to restart the Windows Explorer in C2R Scrubber
+
+2.12
+====
+Fixed:   Added new component "Office 16 Click-to-Run Extensibility Component 64-bit Registration" to the C2R removal scope
+
+2.10
+====
+Fixed:   setup.exe process still got always detected as Office process and was shut down
+Version Sync
+
+2.09
+====
+Fixed:   ARP detection for O16_msi
+
+2.08
+====
+Fixed:   C2R log file improvements for the return value
+
+2.07
+====
+Added:   /SkipSD option for C2R cleaner
+
+2.06
+====
+Fixed:   C2R log file updates
+
+2.05
+====
+Changed: No longer default to search and terminate other processes that contain 'setup' or 'install' in the name.
+         If still needed add "/EndCurrentInstalls" to the command line.
+
+2.04
+====
+Fixed:   Declaration bug in OffScrub_O16msi
+
+2.03
+====
+Fixed:   Bad variable for /? in OffScrubC2R
+Fixed:   Script self-relaunch logic to retain the silent / quiet option
+Changed: Improved logic to clear orphaned shortcuts
+Changed: Added switch /ReturnErrorOrSuccess to force a successful return code to always be 0
+Changed: Gated the removal of machine add-in registration behind an option that's off by default. 
+         Enable with /ClearAddinReg
+Version Sync
+
+2.00
+====
+Fixed:   OffScrubC2R logic did not remove the expected msi integration packages
+
+1.99
+====
+Changed: SKU detection logic to allow removal of custom hidden entries (multi-msi config entries)
+Fixed:   Shortcut unpin/removal logic in OffScrubC2R
+Sync:    Sync of individual scripts to have the same feature set
+
+1.98
+====
+Changed: Rerun and SetRunOnce are now using HKLM instead of HKCU for better SCCM compatibility
+
+1.97
+====
+Fixed:   Updates to OffScrubC2R
+
+1.92
+====
+Fixed:   Unintentional delete of OSPP registry resource in Office 2010
+
+1.91
+====
+Fixed:   Relaunch logic lost setting configured in ini section
+Fixed:   Missing 64bit relaunch code in 2003 scrubber
+Fixed:   syntax error from duplicated line in 15 MSI script
+Added:   Optional CleanOSPP option in 2013 MSI scrubber
+
+1.90
+====
+Fixed:   Unintentional reg UpgradeCode removal on partial scrub
+Changed: Moved to unified C2R scrubber v 1.93
+
+1.89
+====
+Fixed:   Typo caused syntax error in OffScrub10.vbs
+Added:   Ported logic to allow wscript with /Q for C2R scrubber
+
+1.88
+====
+Fixed:   Missing function in 2003 removal code
+Fixed:   Invalid assignement error in CloseOfficeApps
+
+1.87
+====
+Fixed:   Shortcut cleanup logic now works without component detection (changed default in 1.85)
+Fixed:   Shortcut cleanup removed non-Office shortcuts
+
+1.86
+====
+Changed: Relaunch window now uses "cmd /c" to make the new CMD terminate on end
+
+1.85
+====
+Changed: Removed Component detection from default
+Changed: "Passive" mode by default unless launched without any switches
+
+1.80
+====
+Version sync to 2013 removers
+ - Possible debug version awareness
+ - Awareness for 64 bit OS requirements
+ - Fix for quiet and passive mode
+ - Improved shortcut removal logic
+ - Improved product scope detection logic
+ - Safer default for registry removal logic related to default entries rather than key removal
+ - Logic to end current installations before running the remover
+ - Additional and improved empty folder removal
+ - Fixed bug in running process detection for file removal
+ - Extended registry delete wrapper to allow handling of REG_MULTI_SZ
+ - Additional logging headers for better log file readability
+ - Fixed bug in Component registration cleanup
+ - Changed reference key for elevated state detection
+ - Fixed bug in product scope detection
+ - Added new switches "/NoElevate", "/QB"
+ - Relaunches will return child return code (except for elevation)
+
+1.51
+====
+Changed: Quiet switch will no longer switch to cscript host if called with wscript
+
+1.50
+====
+Added: User Managed cleanup for 2003 products
+
+1.49
+====
+Fixed: Made the Lync 2010 removal feature a 'switch'. Use with "/RemoveLync"
+
+1.48
+====
+Added: "/KeepSG" switch to ensure the SoftGrid client files are excluded from removal
+
+1.47
+====
+Added: Lync 2010 removal option
+
+1.46
+====
+Added: Option to exit the script if no Office product is installed
+Fixed: Unintentional removal of v1 Softgrid data
+
+1.44 (initial 2002 OffScrub version)
+====
+Fixed: Issue on TryReconcile call
+Fixed: Product scope detection issue for 2003 products
+
+1.43
+====
+Fixed: Typo in SkipShortcutDetection switch
+Fixed: Less aggresive registry cleanup to prevent delete of non-Office data
+
+1.42
+====
+Fixed: Added 'DisplayName' for temporary keys to avoid failures if the keys are not removed
+
+1.41
+====
+Added: OS version details logging
+Improved: Restore Explorer.exe handling in case Explorer gets terminated unexpectedly
+
+1.40
+====
+Changed: Optimized component detection handling
+
+1.39
+====
+Added: Verbose Logging for component detection
+Fixed: Component detection issues
+
+1.38
+====
+Fixed: Avoid unintentional disruption of process terminate logic
+Added: Some logging details
+
+1.37
+====
+Fixed: Broken product detection for Office 2003
+
+1.36
+====
+Added social connectors as known SKUs
+Added .bak files to delete if necessary
+
+1.35
+====
+Significant improvement on the detection and cleanup capabilities for component registrations
+Improved elevated relaunch logic for UAC scenarios
+Improved handling for orphaned chained packages
+Improved file delete handling
+Added additional logging
+Fixed bug with the command line parser for server suites
+Fixed bug for some registry cleanup calls
+Code consolidation between the different scrubber versions
+
+1.28
+====
+Major overhaul and sync of code base
+Added OffScrub03.vbs (Office 2003 removal)
+Added interactive feature improvements
+
+1.26 (initial 2010 FixIt version)
+====
+
+1.20
+====
+Changed: Standalone products no longer need the appended _<LCID>
+         Example: New syntax: "O2007CNV"
+                  Old syntax: "O2007CNV_1033"
+
+1.19
+====
+Changed: Added option to bypass ShortCut detection	
+Changed: Additional command line features
+Changed: Improved logging for registry delete operations
+Fixed:   ARP product detection
+Fixed:   Some minor corrections
+
+1.18
+====
+Changed: Additional regkey removal for OSPP
+Fixed:   Misspelled message string
+
+1.17
+====
+Changed: Removed entry points to msizap.
+Changed: Added back some individual files for removal
+Fixed:   Scoped shortcut (.lnk) search to local disk drives
+
+1.16 (initial 2007 FixIt version)
+====
+Removed: Msizap integration
+Changed: Code maintenance
+
+1.13
+====
+Changed: Added addtional regkey locations needed for individual product removal 
+         "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\12.0\Registration"
+         "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\12.0\User Settings"
+Changed: Made some registry handling routines safer to avoid rare script failures
+Changed: Removed obsolete code and comments
+
+1.12
+====
+Changed: Added missing SKU's for better products detection
+Fixed:   User settings were not removed. Corrected default value.
+
+1.11
+====
+Fixed:   Declaration bug in OSE termination utility
+Changed: Explorer task will no longer be killed with /Force option
+Changed: Reverted removal of licensing files
+Added:   Additional options for more granular control over user settings
+
+1.10
+====
+Added:   Office 14 awareness
+Fixed:   Removal of non Office shortcuts
+Changed: Default mode does now respect msidbComponentAttributesPermanent flag (use the "/Force" mode to enforce removal of those files)
+Changed: Handling of service removal
+
+1.07 (initial 2003 FixIt version)
+====
+(Note: This version relates to 1.28 in the consolidated code base)
+
+1.06
+====
+Changed: Added additional regkey locations in full removal mode
+Changed: Added more services to be removed in full removal mode 
+
+1.02
+====
+Changed: Added Error handling to avoid script failure during shortcut removal
+Fixed:   Corrected 12.0 regkey reference to point to 14.
+
+1.01
+====
+Fixed:   Bug in 64 bit registry key enumeration
+Changed: Limited scope of shortcut delete operations to local hard drives
+Changed: Added missing SKU's for better products detection
+Changed: Added addtional regkey locations needed for individual product removal 
+         "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\12.0\Registration"
+         "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\12.0\User Settings"
+Changed: Made some registry handling routines safer to avoid rare script failures
+Changed: Removed obsolete code and comments
+
+1.00
+====
+Initial Release
